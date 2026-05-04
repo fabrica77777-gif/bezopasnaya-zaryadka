@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: #FFFFFF;
+    color: #111827;
+    -webkit-font-smoothing: antialiased;
+    padding: 40px;
+  }
+  .title {
+    font-size: 22px; font-weight: 700; text-align: center; margin-bottom: 8px;
+  }
+  .subtitle {
+    font-size: 14px; color: #6B7280; text-align: center; margin-bottom: 32px;
+  }
+  .schema-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 340px));
+    gap: 24px;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .entity-card {
+    background: #F8FAFC; border: 1.5px solid #E2E8F0;
+    border-radius: 12px; overflow: hidden;
+  }
+  .entity-header {
+    padding: 12px 18px;
+    font-size: 15px; font-weight: 700;
+    border-bottom: 2px solid;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .entity-header .icon {
+    width: 28px; height: 28px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; color: white;
+  }
+  .entity-fields { padding: 12px 18px; }
+  .field-row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 5px 0; font-size: 13px; border-bottom: 1px solid #F1F5F9;
+  }
+  .field-row:last-child { border-bottom: none; }
+  .field-key {
+    width: 18px; height: 18px; border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; font-weight: 700; flex-shrink: 0;
+  }
+  .field-key.pk { background: #F59E0B; color: white; }
+  .field-key.fk { background: #3B82F6; color: white; }
+  .field-key.none { background: #E2E8F0; color: transparent; }
+  .field-name { flex: 1; color: #374151; font-family: 'SF Mono', 'Fira Code', monospace; }
+  .field-type { color: #94A3B8; font-size: 12px; font-family: 'SF Mono', monospace; }
+  .field-nullable { color: #CBD5E1; font-size: 11px; }
+
+  .card-blue .entity-header { border-color: #3B82F6; color: #1E40AF; background: #EFF6FF; }
+  .card-blue .icon { background: #3B82F6; }
+  .card-green .entity-header { border-color: #10B981; color: #065F46; background: #F0FDF4; }
+  .card-green .icon { background: #10B981; }
+  .card-amber .entity-header { border-color: #F59E0B; color: #92400E; background: #FFF7ED; }
+  .card-amber .icon { background: #F59E0B; }
+  .card-purple .entity-header { border-color: #8B5CF6; color: #5B21B6; background: #F5F3FF; }
+  .card-purple .icon { background: #8B5CF6; }
+  .card-cyan .entity-header { border-color: #06B6D4; color: #155E75; background: #ECFEFF; }
+  .card-cyan .icon { background: #06B6D4; }
+  .card-red .entity-header { border-color: #EF4444; color: #991B1B; background: #FEF2F2; }
+  .card-red .icon { background: #EF4444; }
+
+  .relations {
+    max-width: 1200px; margin: 32px auto 0; padding: 20px;
+    background: #F8FAFC; border-radius: 12px; border: 1px solid #E2E8F0;
+  }
+  .relations-title { font-size: 14px; font-weight: 700; color: #475569; margin-bottom: 12px; }
+  .rel-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 6px 0; font-size: 13px;
+  }
+  .rel-entity {
+    background: #EFF6FF; color: #1E40AF; padding: 3px 10px;
+    border-radius: 4px; font-weight: 600;
+  }
+  .rel-type { color: #F59E0B; font-weight: 700; font-size: 12px; }
+  .rel-desc { color: #6B7280; }
+</style>
+</head>
+<body>
+  <div class="title">Схема базы данных</div>
+  <div class="subtitle">Prisma ORM + PostgreSQL — 6 таблиц</div>
+
+  <div class="schema-grid">
+    <!-- Users -->
+    <div class="entity-card card-blue">
+      <div class="entity-header">
+        <div class="icon">U</div>
+        users
+      </div>
+      <div class="entity-fields">
+        <div class="field-row">
+          <div class="field-key pk">PK</div>
+          <div class="field-name">id</div>
+          <div class="field-type">UUID</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">name</div>
+          <div class="field-type">String</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">age_group</div>
+          <div class="field-type">Int</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">avatar</div>
+          <div class="field-type">String</div>
+          <div class="field-nullable">nullable</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">parent_pin</div>
+          <div class="field-type">String</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">streak_days</div>
+          <div class="field-type">Int</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">total_stars</div>
+          <div class="field-type">Int</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">created_at</div>
+          <div class="field-type">DateTime</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exercises -->
+    <div class="entity-card card-green">
+      <div class="entity-header">
+        <div class="icon">E</div>
+        exercises
+      </div>
+      <div class="entity-fields">
+        <div class="field-row">
+          <div class="field-key pk">PK</div>
+          <div class="field-name">id</div>
+          <div class="field-type">UUID</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">name</div>
+          <div class="field-type">String</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">description</div>
+          <div class="field-type">String</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">duration_sec</div>
+          <div class="field-type">Int</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">animation_url</div>
+          <div class="field-type">String</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">difficulty</div>
+          <div class="field-type">Enum</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">complex_id</div>
+          <div class="field-type">UUID</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Complexes -->
+    <div class="entity-card card-cyan">
+      <div class="entity-header">
+        <div class="icon">C</div>
+        exercise_complexes
+      </div>
+      <div class="entity-fields">
+        <div class="field-row">
+          <div class="field-key pk">PK</div>
+          <div class="field-name">id</div>
+          <div class="field-type">UUID</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">name</div>
+          <div class="field-type">String</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">season</div>
+          <div class="field-type">Enum</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">age_group</div>
+          <div class="field-type">Int</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">order_index</div>
+          <div class="field-type">Int</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Questions -->
+    <div class="entity-card card-amber">
+      <div class="entity-header">
+        <div class="icon">Q</div>
+        questions
+      </div>
+      <div class="entity-fields">
+        <div class="field-row">
+          <div class="field-key pk">PK</div>
+          <div class="field-name">id</div>
+          <div class="field-type">UUID</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">text</div>
+          <div class="field-type">String</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">options</div>
+          <div class="field-type">JSON</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">correct_index</div>
+          <div class="field-type">Int</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">explanation</div>
+          <div class="field-type">String</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">season</div>
+          <div class="field-type">Enum</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">location</div>
+          <div class="field-type">Enum</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">difficulty</div>
+          <div class="field-type">Enum</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progress -->
+    <div class="entity-card card-purple">
+      <div class="entity-header">
+        <div class="icon">P</div>
+        progress
+      </div>
+      <div class="entity-fields">
+        <div class="field-row">
+          <div class="field-key pk">PK</div>
+          <div class="field-name">id</div>
+          <div class="field-type">UUID</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key fk">FK</div>
+          <div class="field-name">user_id</div>
+          <div class="field-type">UUID</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">type</div>
+          <div class="field-type">Enum</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key fk">FK</div>
+          <div class="field-name">item_id</div>
+          <div class="field-type">UUID</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">completed</div>
+          <div class="field-type">Boolean</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">correct</div>
+          <div class="field-type">Boolean</div>
+          <div class="field-nullable">nullable</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">completed_at</div>
+          <div class="field-type">DateTime</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Achievements -->
+    <div class="entity-card card-red">
+      <div class="entity-header">
+        <div class="icon">A</div>
+        achievements
+      </div>
+      <div class="entity-fields">
+        <div class="field-row">
+          <div class="field-key pk">PK</div>
+          <div class="field-name">id</div>
+          <div class="field-type">UUID</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">name</div>
+          <div class="field-type">String</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">description</div>
+          <div class="field-type">String</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">icon_url</div>
+          <div class="field-type">String</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">condition</div>
+          <div class="field-type">JSON</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key fk">FK</div>
+          <div class="field-name">user_id</div>
+          <div class="field-type">UUID</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key none">&nbsp;</div>
+          <div class="field-name">unlocked_at</div>
+          <div class="field-type">DateTime</div>
+          <div class="field-nullable">nullable</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="relations">
+    <div class="relations-title">Связи между таблицами</div>
+    <div class="rel-row">
+      <span class="rel-entity">users</span>
+      <span class="rel-type">1 : N</span>
+      <span class="rel-entity">progress</span>
+      <span class="rel-desc">— один пользователь имеет много записей прогресса</span>
+    </div>
+    <div class="rel-row">
+      <span class="rel-entity">users</span>
+      <span class="rel-type">1 : N</span>
+      <span class="rel-entity">achievements</span>
+      <span class="rel-desc">— один пользователь имеет много достижений</span>
+    </div>
+    <div class="rel-row">
+      <span class="rel-entity">exercise_complexes</span>
+      <span class="rel-type">1 : N</span>
+      <span class="rel-entity">exercises</span>
+      <span class="rel-desc">— один комплекс содержит много упражнений</span>
+    </div>
+    <div class="rel-row">
+      <span class="rel-entity">questions</span>
+      <span class="rel-desc">фильтруются по season + location</span>
+    </div>
+  </div>
+</body>
+</html>

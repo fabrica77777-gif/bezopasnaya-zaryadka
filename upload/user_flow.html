@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+  :root {
+    --text: #111827;
+    --text-sub: #6B7280;
+    --text-muted: #9CA3AF;
+    --bg: #FFFFFF;
+    --surface: #F9FAFB;
+    --border: #E5E7EB;
+    --connector: #94A3B8;
+  }
+  #root { width: fit-content; min-width: 800px; margin: 0 auto; padding: 48px 40px; }
+
+  .flow-title {
+    font-size: 22px; font-weight: 700; color: var(--text);
+    text-align: center; margin-bottom: 8px;
+  }
+  .flow-subtitle {
+    font-size: 14px; color: var(--text-sub);
+    text-align: center; margin-bottom: 32px;
+  }
+
+  .phase-group {
+    background: #F8FAFC; border-radius: 12px; padding: 20px 24px;
+    margin-bottom: 24px;
+  }
+  .phase-title {
+    font-size: 16px; font-weight: 700; padding: 10px 16px;
+    border-radius: 8px; margin-bottom: 16px;
+  }
+  .phase-steps { display: flex; flex-direction: column; gap: 8px; padding-left: 12px; }
+  .phase-step {
+    font-size: 14px; font-weight: 400; color: var(--text);
+    padding: 8px 14px; background: white; border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+  .phase-step .step-num {
+    display: inline-block; width: 22px; height: 22px; line-height: 22px;
+    text-align: center; border-radius: 50%; font-size: 12px; font-weight: 600;
+    margin-right: 8px;
+  }
+
+  .phase-1 .phase-title { background: #F0F4F8; color: #334155; border-left: 4px solid #64748B; }
+  .phase-1 .step-num { background: #E2E8F0; color: #475569; }
+  .phase-2 .phase-title { background: #E8EDF2; color: #1E3A5F; border-left: 4px solid #5B7A99; }
+  .phase-2 .step-num { background: #DBEAFE; color: #1E3A5F; }
+  .phase-3 .phase-title { background: #E0E7EF; color: #1E3050; border-left: 4px solid #4A6B8A; }
+  .phase-3 .step-num { background: #D0D9E4; color: #1E3050; }
+  .phase-4 .phase-title { background: #D8E0EA; color: #172540; border-left: 4px solid #3A5C7A; }
+  .phase-4 .step-num { background: #C7D2E0; color: #172540; }
+  .phase-5 .phase-title { background: #DAE1EB; color: #23364D; border-left: 4px solid #4B6A87; }
+  .phase-5 .step-num { background: #C7D2E0; color: #23364D; }
+
+  .arrow-divider {
+    text-align: center; color: #94A3B8; font-size: 24px; margin: 8px 0;
+  }
+
+  .flow-legend {
+    display: flex; gap: 24px; justify-content: center;
+    margin-top: 32px; padding: 16px 24px;
+    background: #F9FAFB; border-radius: 8px; border: 1px solid #E5E7EB;
+  }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #4B5563; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 3px; border: 2px solid; }
+
+  .highlight { 
+    font-weight: 600; 
+  }
+  .highlight-green { color: #065F46; }
+  .highlight-red { color: #991B1B; }
+</style>
+</head>
+<body>
+<div id="root">
+  <div class="flow-title">Игровой цикл: Безопасная Зарядка</div>
+  <div class="flow-subtitle">Фиджитал-приложение для детей 6-11 лет: гимнастика + безопасность</div>
+
+  <div class="phase-group phase-1">
+    <div class="phase-title">Фаза 1: Вход и выбор</div>
+    <div class="phase-steps">
+      <div class="phase-step"><span class="step-num">1</span>Ребенок открывает веб-приложение (мобильное или десктоп)</div>
+      <div class="phase-step"><span class="step-num">2</span>Выбор аватара / вход как гость</div>
+      <div class="phase-step"><span class="step-num">3</span>Выбор сезона (весна / лето / осень / зима) — определяется автоматически или вручную</div>
+    </div>
+  </div>
+
+  <div class="arrow-divider">↓</div>
+
+  <div class="phase-group phase-2">
+    <div class="phase-title">Фаза 2: Утренняя гимнастика (фиджитал)</div>
+    <div class="phase-steps">
+      <div class="phase-step"><span class="step-num">4</span>Приложение показывает анимацию упражнения (название + счётчик)</div>
+      <div class="phase-step"><span class="step-num">5</span>Ребенок выполняет упражнение в реальном мире (прыжки, наклоны, махи)</div>
+      <div class="phase-step"><span class="step-num">6</span>Таймер отсчитывает время выполнения (15-30 сек)</div>
+      <div class="phase-step"><span class="step-num">7</span>По завершении — <span class="highlight highlight-green">зелёная галочка</span> на экране</div>
+      <div class="phase-step"><span class="step-num">8</span>Переход к следующему упражнению (5-7 упражнений в комплексе)</div>
+    </div>
+  </div>
+
+  <div class="arrow-divider">↓</div>
+
+  <div class="phase-group phase-3">
+    <div class="phase-title">Фаза 3: Квиз по безопасности</div>
+    <div class="phase-steps">
+      <div class="phase-step"><span class="step-num">9</span>Выбор локации (компьютер / телефон / дом / улица / школа / парк / лес)</div>
+      <div class="phase-step"><span class="step-num">10</span>Приложение задаёт вопрос по безопасности (сезон + локация)</div>
+      <div class="phase-step"><span class="step-num">11</span>Ребенок выбирает ответ из 3-4 вариантов</div>
+      <div class="phase-step"><span class="step-num">12</span><span class="highlight highlight-green">Правильный ответ</span> — зелёная галочка + очки</div>
+      <div class="phase-step"><span class="step-num">13</span><span class="highlight highlight-red">Неправильный ответ</span> — вибрация устройства + подсветка правильного ответа</div>
+      <div class="phase-step"><span class="step-num">14</span>Краткое объяснение правильного ответа (обучающий момент)</div>
+    </div>
+  </div>
+
+  <div class="arrow-divider">↓</div>
+
+  <div class="phase-group phase-4">
+    <div class="phase-title">Фаза 4: Награды и прогресс</div>
+    <div class="phase-steps">
+      <div class="phase-step"><span class="step-num">15</span>Начисление звёзд / монет за выполнение упражнений и правильные ответы</div>
+      <div class="phase-step"><span class="step-num">16</span>Разблокировка новых аватаров / комплексов упражнений</div>
+      <div class="phase-step"><span class="step-num">17</span>Отображение прогресс-бара (сколько дней подряд)</div>
+    </div>
+  </div>
+
+  <div class="arrow-divider">↓</div>
+
+  <div class="phase-group phase-5">
+    <div class="phase-title">Фаза 5: Отчёт для родителей</div>
+    <div class="phase-steps">
+      <div class="phase-step"><span class="step-num">18</span>Родитель открывает дашборд (PIN-код)</div>
+      <div class="phase-step"><span class="step-num">19</span>Статистика: упражнения выполнены, вопросы по безопасности, правильные/неправильные</div>
+      <div class="phase-step"><span class="step-num">20</span>Рекомендации: на какие темы обратить внимание</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

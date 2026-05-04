@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: #FFFFFF;
+    color: #111827;
+    -webkit-font-smoothing: antialiased;
+    padding: 40px;
+  }
+  .title {
+    font-size: 22px; font-weight: 700; text-align: center; margin-bottom: 8px;
+  }
+  .subtitle {
+    font-size: 14px; color: #6B7280; text-align: center; margin-bottom: 32px;
+  }
+
+  .matrix-container {
+    max-width: 1100px; margin: 0 auto;
+  }
+
+  .matrix-table {
+    width: 100%; border-collapse: separate; border-spacing: 0;
+    border-radius: 12px; overflow: hidden;
+    border: 1.5px solid #E2E8F0;
+  }
+  .matrix-table th {
+    padding: 12px 16px; font-size: 13px; font-weight: 700;
+    text-align: center; border-bottom: 2px solid #E2E8F0;
+  }
+  .matrix-table th:first-child {
+    text-align: left; background: #F8FAFC;
+  }
+  .matrix-table td {
+    padding: 10px 14px; font-size: 13px; text-align: center;
+    border-bottom: 1px solid #F1F5F9;
+  }
+  .matrix-table td:first-child {
+    font-weight: 600; text-align: left; background: #F8FAFC;
+    border-right: 1px solid #E2E8F0;
+  }
+  .matrix-table tr:last-child td { border-bottom: none; }
+
+  .season-header { padding: 10px 16px; }
+  .season-spring { background: #F0FDF4; color: #065F46; }
+  .season-summer { background: #FFF7ED; color: #92400E; }
+  .season-autumn { background: #FEF2F2; color: #991B1B; }
+  .season-winter { background: #EFF6FF; color: #1E40AF; }
+  .season-general { background: #F5F3FF; color: #5B21B6; }
+
+  .loc-row-label {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .loc-icon {
+    width: 24px; height: 24px; border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; flex-shrink: 0;
+  }
+  .loc-icon.computer { background: #DBEAFE; color: #1E40AF; }
+  .loc-icon.phone { background: #E0E7FF; color: #3730A3; }
+  .loc-icon.home { background: #FEF3C7; color: #92400E; }
+  .loc-icon.street { background: #D1FAE5; color: #065F46; }
+  .loc-icon.school { background: #FCE7F3; color: #9D174D; }
+  .loc-icon.park { background: #CCFBF1; color: #134E4A; }
+  .loc-icon.forest { background: #DCFCE7; color: #166534; }
+
+  .q-count {
+    display: inline-block; padding: 3px 10px;
+    border-radius: 12px; font-weight: 600; font-size: 12px;
+    background: #F1F5F9; color: #475569;
+  }
+  .q-count.has-questions { background: #EFF6FF; color: #1E40AF; }
+
+  .legend {
+    display: flex; gap: 20px; justify-content: center;
+    margin-top: 24px; padding: 16px;
+    background: #F9FAFB; border-radius: 8px; border: 1px solid #E5E7EB;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #4B5563; }
+  .legend-swatch {
+    width: 14px; height: 14px; border-radius: 3px; border: 1.5px solid;
+  }
+
+  .total-row td {
+    font-weight: 700; background: #F0F4F8;
+  }
+</style>
+</head>
+<body>
+  <div class="title">Матрица контента: Сезон x Локация</div>
+  <div class="subtitle">Количество вопросов по безопасности для каждой комбинации (всего 140+ вопросов)</div>
+
+  <div class="matrix-container">
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th style="min-width: 140px;">Локация</th>
+          <th class="season-spring season-header">Весна</th>
+          <th class="season-summer season-header">Лето</th>
+          <th class="season-autumn season-header">Осень</th>
+          <th class="season-winter season-header">Зима</th>
+          <th class="season-general season-header">Общие</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="loc-row-label"><div class="loc-icon computer">PC</div>Компьютер</div>
+          </td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="loc-row-label"><div class="loc-icon phone">Ph</div>Сотовый</div>
+          </td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="loc-row-label"><div class="loc-icon home">Ho</div>Дома</div>
+          </td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="loc-row-label"><div class="loc-icon street">St</div>На улице</div>
+          </td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="loc-row-label"><div class="loc-icon school">Sc</div>В школе</div>
+          </td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="loc-row-label"><div class="loc-icon park">Pa</div>В парке</div>
+          </td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="loc-row-label"><div class="loc-icon forest">Fo</div>В лесу</div>
+          </td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+          <td><span class="q-count has-questions">5</span></td>
+        </tr>
+        <tr class="total-row">
+          <td style="text-align: right; padding-right: 20px;">Итого:</td>
+          <td><span class="q-count has-questions">35</span></td>
+          <td><span class="q-count has-questions">35</span></td>
+          <td><span class="q-count has-questions">35</span></td>
+          <td><span class="q-count has-questions">35</span></td>
+          <td><span class="q-count has-questions">35</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-swatch" style="background:#F0FDF4;border-color:#10B981;"></div>Весна</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#FFF7ED;border-color:#F59E0B;"></div>Лето</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#FEF2F2;border-color:#EF4444;"></div>Осень</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#EFF6FF;border-color:#3B82F6;"></div>Зима</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#F5F3FF;border-color:#8B5CF6;"></div>Общие</div>
+    </div>
+  </div>
+</body>
+</html>
